@@ -31,6 +31,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="my" className="dark" suppressHydrationWarning style={{ backgroundColor: '#0a0a0a' }}>
+
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          try {
+            var s = JSON.parse(localStorage.getItem('bioscope-settings') || '{}');
+            var c = s.state && s.state.primaryColor ? s.state.primaryColor : '#E53935';
+            document.documentElement.style.setProperty('--dynamic-primary', c);
+          } catch(e) {}
+        `,
+      }}
+    />
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen`}
         style={{ backgroundColor: '#0a0a0a', color: '#ffffff' }}

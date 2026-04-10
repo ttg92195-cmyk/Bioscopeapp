@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, Bookmark, BookmarkCheck } from 'lucide-react';
-import { useUserStore, useSettingsStore, StoredMovie } from '@/lib/store';
+import { useUserStore, StoredMovie } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
 interface MovieCardProps {
@@ -30,8 +30,7 @@ export default function MovieCard({
   compact = false,
 }: MovieCardProps) {
   const { isBookmarked, addBookmark, removeBookmark } = useUserStore();
-  const { primaryColor } = useSettingsStore();
-  const bookmarked = isBookmarked(id);
+    const bookmarked = isBookmarked(id);
 
   const displayTitle = title || 'Movie';
   const posterUrl = posterPath
@@ -76,13 +75,10 @@ export default function MovieCard({
         {/* Quality Badge */}
         {quality && (
           <span
-            className="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full shadow-lg shadow-black/30"
-            style={{
-              background: quality === '4K'
-                ? `linear-gradient(135deg, ${primaryColor}, ${primaryColor}aa)`
-                : 'linear-gradient(135deg, #8B5CF6, #A78BFA)',
-              color: 'white'
-            }}
+            className={cn(
+              "absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full shadow-lg shadow-black/30 text-white",
+              quality === '4K' ? "badge-4k" : "badge-exclusive"
+            )}
           >
             {quality}
           </span>
@@ -108,7 +104,7 @@ export default function MovieCard({
             )}
           >
             {bookmarked ? (
-              <BookmarkCheck className="w-3.5 h-3.5" style={{ color: primaryColor }} />
+              <BookmarkCheck className="w-3.5 h-3.5" style={{ color: "var(--dynamic-primary, #E53935)" }} />
             ) : (
               <Bookmark className="w-3.5 h-3.5 text-white/70" />
             )}

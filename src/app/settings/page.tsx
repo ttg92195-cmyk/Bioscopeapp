@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
@@ -21,6 +21,9 @@ export default function SettingsPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showLogin, setShowLogin] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const handleLogin = () => {
     if (login(username, password)) {
@@ -61,7 +64,7 @@ export default function SettingsPage() {
             size="icon"
             onClick={() => router.back()}
             className="rounded-xl hover:bg-white/5 transition-colors duration-300"
-            style={{ color: primaryColor }}
+            style={{ color: "var(--dynamic-primary, #E53935)" }}
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
@@ -98,7 +101,7 @@ export default function SettingsPage() {
                 {!showLogin ? (
                   <Button
                     className="w-full rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-lg"
-                    style={{ backgroundColor: primaryColor }}
+                    style={{ backgroundColor: "var(--dynamic-primary, #E53935)" }}
                     onClick={() => setShowLogin(true)}
                   >
                     <LogIn className="w-4 h-4 mr-2" />
@@ -135,7 +138,7 @@ export default function SettingsPage() {
                       </Button>
                       <Button
                         className="flex-1 rounded-xl transition-all duration-300 hover:brightness-110"
-                        style={{ backgroundColor: primaryColor }}
+                        style={{ backgroundColor: "var(--dynamic-primary, #E53935)" }}
                         onClick={handleLogin}
                       >
                         Login
@@ -170,19 +173,25 @@ export default function SettingsPage() {
                 <div>
                   <Label className="text-white/40 text-xs font-medium">Primary Color</Label>
                   <div className="flex items-center gap-3 mt-2">
-                    <div className="relative">
-                      <input
-                        type="color"
-                        value={primaryColor}
-                        onChange={(e) => setPrimaryColor(e.target.value)}
-                        className="w-10 h-10 rounded-xl cursor-pointer border-2 border-white/10 p-0.5 bg-transparent transition-all duration-300 hover:border-white/20"
-                      />
-                    </div>
-                    <Input
-                      value={primaryColor}
-                      onChange={(e) => setPrimaryColor(e.target.value)}
-                      className="bg-white/5 border-white/8 rounded-lg flex-1 text-sm font-mono focus-visible:bg-white/8 focus-visible:border-white/15 transition-all duration-300"
-                    />
+                    {mounted ? (
+                      <>
+                        <div className="relative">
+                          <input
+                            type="color"
+                            value={primaryColor}
+                            onChange={(e) => setPrimaryColor(e.target.value)}
+                            className="w-10 h-10 rounded-xl cursor-pointer border-2 border-white/10 p-0.5 bg-transparent transition-all duration-300 hover:border-white/20"
+                          />
+                        </div>
+                        <Input
+                          value={primaryColor}
+                          onChange={(e) => setPrimaryColor(e.target.value)}
+                          className="bg-white/5 border-white/8 rounded-lg flex-1 text-sm font-mono focus-visible:bg-white/8 focus-visible:border-white/15 transition-all duration-300"
+                        />
+                      </>
+                    ) : (
+                      <div className="w-full h-10 rounded-lg shimmer" />
+                    )}
                   </div>
                 </div>
 
