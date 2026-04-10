@@ -120,7 +120,7 @@ export async function DELETE(
 
     // Delete movie-level download links and video servers
     await db.downloadLink.deleteMany({ where: { movieId: id } });
-    await db.videoServer.deleteMany({ where: { movieId: id } });
+    await db.movieVideoServer.deleteMany({ where: { movieId: id } });
 
     // Delete episodes, seasons, and finally the movie
     for (const season of movie.seasons) {
