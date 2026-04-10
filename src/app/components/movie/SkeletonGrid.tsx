@@ -21,17 +21,10 @@ function SkeletonCard({ compact = false }: { compact?: boolean }) {
 
 export default function SkeletonGrid({ count = 12, compact = true }: SkeletonGridProps) {
   return (
-    <section className="mb-6">
-      {/* Title skeleton */}
-      <div className="flex items-center justify-between mb-3 px-4">
-        <div className="shimmer rounded h-5 w-20" />
-      </div>
-      {/* Grid */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 px-4">
-        {Array.from({ length: count }).map((_, i) => (
-          <SkeletonCard key={i} compact={compact} />
-        ))}
-      </div>
-    </section>
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 px-4">
+      {Array.from({ length: count }).map((_, i) => (
+        <SkeletonCard key={i} compact={compact} />
+      ))}
+    </div>
   );
 }

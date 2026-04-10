@@ -125,6 +125,10 @@ function SeriesContent() {
     return pages;
   };
 
+  if (loading) {
+    return null;
+  }
+
   return (
     <>
       <div className="px-4 mb-4">
@@ -158,11 +162,9 @@ function SeriesContent() {
         </div>
       </div>
 
-      {loading && <SkeletonGrid count={12} />}
+      <MovieGrid movies={paginatedSeries} />
 
-      {!loading && <MovieGrid movies={paginatedSeries} />}
-
-      {!loading && totalPages > 1 && (
+      {totalPages > 1 && (
         <div className="flex items-center justify-center gap-2 px-4 py-4">
           <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
             <ChevronLeft className="w-4 h-4" />
@@ -182,7 +184,7 @@ function SeriesContent() {
         </div>
       )}
 
-      {!loading && filteredSeries.length === 0 && (
+      {filteredSeries.length === 0 && (
         <div className="text-center py-16 px-4">
           <p className="text-gray-400 mb-2">No series found</p>
           <p className="text-sm text-gray-500">
@@ -197,15 +199,25 @@ function SeriesContent() {
 }
 
 export default function SeriesPage() {
-  const { primaryColor } = useSettingsStore();
-
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       <Sidebar />
       <Header searchPlaceholder="Search Series..." />
 
       <main className="pt-4 pb-20">
-        <Suspense fallback={<SkeletonGrid count={12} />}>
+        <Suspense fallback={
+          <div className="px-4 mb-4">
+            <div className="shimmer rounded h-8 w-40 mb-4" />
+            <div className="shimmer rounded h-10 w-full mb-4" />
+            <div className="flex gap-2 mb-4">
+              <div className="shimmer rounded h-8 w-16" />
+              <div className="shimmer rounded h-8 w-20" />
+              <div className="shimmer rounded h-8 w-16" />
+              <div className="shimmer rounded h-8 w-20" />
+              <div className="shimmer rounded h-8 w-24" />
+            </div>
+          </div>
+        }>
           <SeriesContent />
         </Suspense>
       </main>
