@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  password     String
+  role         String   @default("user") // "admin" or "user"
+  viewedPosts  ViewedPost[]
+  bookmarks    Bookmark[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Movie {
+  id           String         @id @default(cuid())
+  tmdbId       Int?
+  title        String
+  overview     String?
+  posterPath   String?
+  backdropPath String?
+  releaseDate  String?
+  rating       Float          @default(0)
+  runtime      Int?
+  type         String         // "movie" or "series"
+  genres       String         // JSON array stored as string
+  quality      String?
+  seasons      Season[]
+  downloadLinks DownloadLink[]
+  videoServers MovieVideoServer[]
+  bookmarks    Bookmark[]
+  viewedPosts  ViewedPost[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model MovieVideoServer {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Season {
+  id           String   @id @default(cuid())
+  movieId      String
+  seasonNumber Int
+  name         String?
+  overview     String?
+  posterPath   String?
+  episodes     Episode[]
+  movie        Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Episode {
+  id            String        @id @default(cuid())
+  seasonId      String
+  episodeNumber Int
+  title         String
+  overview      String?
+  stillPath     String?
+  runtime       Int?
+  downloadLinks DownloadLink[]
+  videoServers  VideoServer[]
+  season        Season        @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model VideoServer {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  episodeId String
+  episode   Episode  @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DownloadLink {
+  id         String   @id @default(cuid())
+  server     String
+  size       String
+  resolution String
+  url        String
+  linkText   String   @default("Download")
+  movieId    String?
+  episodeId  String?
+  movie      Movie?   @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  episode    Episode? @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ViewedPost {
+  id       String   @id @default(cuid())
+  userId   String
+  movieId  String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  movie    Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  viewedAt DateTime @default(now())
+  @@unique([userId, movieId])
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  movieId   String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  @@unique([userId, movieId])
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Genre {
+  id        String   @id @default(cuid())
+  tmdbId    Int      @unique
+  name      String
+  type      String   // "movie" or "tv"
+  createdAt DateTime @default(now())
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // "movie" or "series" or "both"
+  createdAt DateTime @default(now())
+}
+
+model Collection {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // "movie" or "series" or "both"
+  createdAt DateTime @default(now())
+}
