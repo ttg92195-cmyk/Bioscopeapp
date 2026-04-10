@@ -1,5 +1,13 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "git": {
+    "deploymentEnabled": true
+  },
+  "build": {
+    "env": {
+      "NEXT_IGNORE_WORKSPACE_EXTRACTED": "true"
+    }
+  }
 }
