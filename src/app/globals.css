@@ -115,7 +115,7 @@
   }
 }
 
-/* Smooth animations - premium feel, fast performance */
+/* Smooth animations - premium feel, slow & steady */
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -164,20 +164,20 @@
 }
 
 .fade-in {
-  animation: fadeIn 0.3s ease-out both;
+  animation: fadeIn 0.5s ease-out both;
 }
 
 .fade-in-scale {
-  animation: fadeInScale 0.25s ease-out both;
+  animation: fadeInScale 0.4s ease-out both;
 }
 
 .slide-up {
-  animation: slideUp 0.3s ease-out both;
+  animation: slideUp 0.5s ease-out both;
 }
 
 /* Movie card - smooth hover */
 .movie-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .movie-card:hover {
@@ -196,12 +196,12 @@
   );
 }
 
-/* Genre button - NO animation */
+/* Genre button - smooth transition */
 .genre-button {
   background: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .genre-button:hover {
@@ -210,7 +210,7 @@
   color: white;
 }
 
-/* Fast shimmer animation for skeleton loading */
+/* Slow, smooth shimmer animation for skeleton loading */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -221,20 +221,20 @@
 }
 
 .shimmer {
-  background: linear-gradient(90deg, #1d1d1d 25%, #272727 50%, #1d1d1d 75%);
+  background: linear-gradient(90deg, #1d1d1d 25%, #2a2a2a 50%, #1d1d1d 75%);
   background-size: 200% 100%;
-  animation: shimmer 0.8s infinite;
+  animation: shimmer 2s ease-in-out infinite;
   border-radius: 0.75rem;
 }
 
-/* Fast spinner */
+/* Smooth spinner */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 .animate-spin {
-  animation: spin 0.3s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 /* Glass header - simplified, less blur */
@@ -261,9 +261,9 @@
   border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Card hover - NO animation */
+/* Card hover - smooth */
 .card-glow {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .card-glow:hover {

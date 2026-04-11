@@ -39,20 +39,20 @@ export default function Header({
         {/* Menu Button */}
         <button
           onClick={open}
-          className="flex items-center justify-center w-10 h-10 -ml-1 rounded-xl hover:bg-white/10 transition-colors duration-150"
+          className="flex items-center justify-center w-10 h-10 -ml-1 rounded-xl hover:bg-white/10 transition-colors duration-300"
           aria-label="Open menu"
         >
-          <div className="flex flex-col gap-[5px] w-[18px] items-center">
+          <div className="flex flex-col gap-[4px] w-5 items-center justify-center">
             <span
-              className="block h-[2px] w-full rounded-full"
+              className="block h-[1.5px] w-full rounded-full"
               style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}
             />
             <span
-              className="block h-[2px] w-[65%] rounded-full"
+              className="block h-[1.5px] w-[70%] rounded-full self-start"
               style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}
             />
             <span
-              className="block h-[2px] w-full rounded-full"
+              className="block h-[1.5px] w-full rounded-full"
               style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}
             />
           </div>

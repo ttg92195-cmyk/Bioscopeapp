@@ -7,6 +7,7 @@ import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
 import MovieGrid from '../components/movie/MovieGrid';
 import Pagination from '../components/movie/Pagination';
+import SkeletonGrid from '../components/movie/SkeletonGrid';
 import { useUserStore } from '@/lib/store';
 import { Bookmark } from 'lucide-react';
 
@@ -90,7 +91,7 @@ export default function BookmarkPage() {
       <Header showSearch={false} />
 
       <main className="pt-4 pb-20">
-        <Suspense fallback={null}>
+        <Suspense fallback={<SkeletonGrid count={10} />}>
           <BookmarkContent />
         </Suspense>
       </main>
