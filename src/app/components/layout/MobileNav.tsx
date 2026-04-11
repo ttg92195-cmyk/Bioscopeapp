@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Film, Tv } from 'lucide-react';
-import { useSettingsStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -14,7 +13,6 @@ const navItems = [
 
 export default function MobileNav() {
   const pathname = usePathname();
-  const { primaryColor } = useSettingsStore();
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 glass-nav z-30 lg:hidden">
@@ -31,17 +29,15 @@ export default function MobileNav() {
                 'relative flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl min-w-[64px]',
                 isActive ? 'text-white' : 'text-white/40'
               )}
-              style={isActive ? { color: primaryColor } : {}}
+              style={isActive ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
             >
               {isActive && (
                 <span
                   className="absolute -top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full"
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}
                 />
               )}
-              <item.icon className={cn(
-                isActive ? "w-5 h-5" : "w-5 h-5"
-              )} />
+              <item.icon className="w-5 h-5" />
               <span className={cn(
                 isActive ? "text-xs font-medium" : "text-[11px]"
               )}>

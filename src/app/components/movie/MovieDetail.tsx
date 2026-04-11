@@ -21,7 +21,7 @@ import {
   Tv,
 } from 'lucide-react';
 import VideoPlayer from './VideoPlayer';
-import { useUserStore, useSettingsStore, StoredMovie } from '@/lib/store';
+import { useUserStore, StoredMovie } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -122,7 +122,6 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
     addViewedMovie,
     isMovieViewed,
   } = useUserStore();
-  const { primaryColor } = useSettingsStore();
   const [activeTab, setActiveTab] = useState('detail');
   const [selectedSeason, setSelectedSeason] = useState<number>(0);
   const [showAddDownload, setShowAddDownload] = useState(false);
@@ -381,7 +380,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
           priority
           unoptimized
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/50 to-transparent" />
 
         <div className="absolute top-4 left-4 right-4 flex justify-between">
           <Button variant="ghost" size="icon" className="bg-black/50 rounded-full" onClick={() => router.back()}>
@@ -389,7 +388,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
           </Button>
           <Button variant="ghost" size="icon" className="bg-black/50 rounded-full" onClick={handleBookmark}>
             {bookmarked ? (
-              <BookmarkCheck className="w-5 h-5" style={{ color: primaryColor }} />
+              <BookmarkCheck className="w-5 h-5" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
             ) : (
               <Bookmark className="w-5 h-5" />
             )}
@@ -414,21 +413,21 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
         </div>
 
         {movie.quality && (
-          <Badge className="mb-4" style={{ backgroundColor: primaryColor }}>{movie.quality}</Badge>
+          <Badge className="mb-4" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>{movie.quality}</Badge>
         )}
 
         {/* Action Buttons */}
         <div className="flex gap-2 mb-6 overflow-x-auto hide-scrollbar">
-          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'detail' && 'text-white')} style={activeTab === 'detail' ? { color: primaryColor } : {}} onClick={() => setActiveTab('detail')}>
+          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'detail' && 'text-white')} style={activeTab === 'detail' ? { color: 'var(--dynamic-primary, #E53935)' } : {}} onClick={() => setActiveTab('detail')}>
             <FileText className="w-5 h-5" /><span className="text-xs">Detail</span>
           </Button>
-          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'watch' && 'text-white')} style={activeTab === 'watch' ? { color: primaryColor } : {}} onClick={() => setActiveTab('watch')}>
+          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'watch' && 'text-white')} style={activeTab === 'watch' ? { color: 'var(--dynamic-primary, #E53935)' } : {}} onClick={() => setActiveTab('watch')}>
             <Tv className="w-5 h-5" /><span className="text-xs">Watch</span>
           </Button>
-          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'download' && 'text-white')} style={activeTab === 'download' ? { color: primaryColor } : {}} onClick={() => setActiveTab('download')}>
+          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'download' && 'text-white')} style={activeTab === 'download' ? { color: 'var(--dynamic-primary, #E53935)' } : {}} onClick={() => setActiveTab('download')}>
             <Download className="w-5 h-5" /><span className="text-xs">Download</span>
           </Button>
-          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'explore' && 'text-white')} style={activeTab === 'explore' ? { color: primaryColor } : {}} onClick={() => setActiveTab('explore')}>
+          <Button variant="ghost" className={cn('flex flex-col items-center gap-1 min-w-[70px]', activeTab === 'explore' && 'text-white')} style={activeTab === 'explore' ? { color: 'var(--dynamic-primary, #E53935)' } : {}} onClick={() => setActiveTab('explore')}>
             <ThumbsUp className="w-5 h-5" /><span className="text-xs">Explore</span>
           </Button>
           {isAdmin && (
@@ -467,7 +466,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                 <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
                   {validSeasons.map((season) => (
                     <Button key={season.id} variant={selectedSeason === season.seasonNumber ? 'default' : 'outline'} size="sm"
-                      style={selectedSeason === season.seasonNumber ? { backgroundColor: primaryColor } : { borderColor: primaryColor, color: primaryColor }}
+                      style={selectedSeason === season.seasonNumber ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: 'var(--dynamic-primary, #E53935)', color: 'var(--dynamic-primary, #E53935)' }}
                       onClick={() => setSelectedSeason(season.seasonNumber)}>
                       {season.name || `Season ${season.seasonNumber}`}
                     </Button>
@@ -527,7 +526,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                               <td className="px-3 py-2 text-xs">{link.size}</td>
                               <td className="px-3 py-2 text-xs">{link.resolution}</td>
                               <td className="px-3 py-2">
-                                <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs rounded" style={{ backgroundColor: primaryColor }}>{link.linkText}</a>
+                                <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-1 text-xs rounded" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>{link.linkText}</a>
                               </td>
                               {isAdmin && (
                                 <td className="px-2 py-2">
@@ -546,7 +545,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                     )}
                     {isAdmin && (
                       <div className="p-3 border-t border-white/10">
-                        <Button className="w-full" style={{ backgroundColor: primaryColor }} onClick={() => setShowAddDownload(true)}>
+                        <Button className="w-full" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={() => setShowAddDownload(true)}>
                           <Plus className="w-4 h-4 mr-2" />Add Download Link
                         </Button>
                       </div>
@@ -561,7 +560,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                       <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
                         {validSeasons.map((season) => (
                           <Button key={season.id} variant={selectedSeason === season.seasonNumber ? 'default' : 'outline'} size="sm"
-                            style={selectedSeason === season.seasonNumber ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+                            style={selectedSeason === season.seasonNumber ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
                             onClick={() => setSelectedSeason(season.seasonNumber)}>
                             {season.name || `Season ${season.seasonNumber}`}
                           </Button>
@@ -605,7 +604,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                                           <td className="px-2 py-1 text-xs">{link.size}</td>
                                           <td className="px-2 py-1 text-xs">{link.resolution}</td>
                                           <td className="px-2 py-1">
-                                            <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-0.5 text-xs rounded" style={{ backgroundColor: primaryColor }}>{link.linkText}</a>
+                                            <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-block px-2 py-0.5 text-xs rounded" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>{link.linkText}</a>
                                           </td>
                                           {isAdmin && (
                                             <td className="px-1 py-1">
@@ -639,7 +638,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
         {activeTab === 'explore' && (
           <div>
             {loadingRelated ? (
-              <div className="flex justify-center py-12"><div className="w-8 h-8 border-2 border-t-transparent rounded-full" style={{ borderColor: primaryColor, borderTopColor: 'transparent' }} /></div>
+              <div className="flex justify-center py-12"><div className="w-8 h-8 border-2 border-t-transparent rounded-full" style={{ borderColor: 'var(--dynamic-primary, #E53935)', borderTopColor: 'transparent' }} /></div>
             ) : relatedMovies.length > 0 ? (
               <div>
                 <h3 className="text-lg font-semibold mb-3">Related {movie.type === 'series' ? 'Series' : 'Movies'}</h3>
@@ -652,7 +651,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                         ) : (
                           <div className="w-full h-full bg-[#2D2D2D] flex items-center justify-center"><Play className="w-8 h-8 text-gray-500" /></div>
                         )}
-                        {relatedMovie.quality && <span className="absolute top-1 left-1 px-1.5 py-0.5 text-[10px] font-bold rounded" style={{ backgroundColor: primaryColor }}>{relatedMovie.quality}</span>}
+                        {relatedMovie.quality && <span className="absolute top-1 left-1 px-1.5 py-0.5 text-[10px] font-bold rounded" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>{relatedMovie.quality}</span>}
                         {relatedMovie.rating > 0 && (
                           <div className="absolute bottom-1 right-1 flex items-center gap-0.5 bg-black/70 px-1.5 py-0.5 rounded text-[10px]">
                             <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" /><span>{relatedMovie.rating.toFixed(1)}</span>
@@ -724,7 +723,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
             </div>
             <div className="flex gap-2 pt-2">
               <Button variant="outline" className="flex-1 h-9" onClick={() => { setShowAddDownload(false); setSelectedEpisodeId(null); }}>Cancel</Button>
-              <Button className="flex-1 h-9" style={{ backgroundColor: primaryColor }} onClick={handleAddDownloadLink}>Save</Button>
+              <Button className="flex-1 h-9" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={handleAddDownloadLink}>Save</Button>
             </div>
           </div>
         </DialogContent>
@@ -735,7 +734,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
         <DialogContent className="bg-[#1E1E1E] border-white/10 text-white max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Edit className="w-5 h-5" style={{ color: primaryColor }} />
+              <Edit className="w-5 h-5" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
               Edit Post
             </DialogTitle>
           </DialogHeader>
@@ -774,7 +773,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
                 {genreOptions.map((genre) => {
                   const isSelected = editForm.genres.includes(genre);
                   return (
-                    <Badge key={genre} variant={isSelected ? 'default' : 'outline'} className={cn('cursor-pointer', isSelected ? '' : 'border-white/20')} style={isSelected ? { backgroundColor: primaryColor } : {}} onClick={() => toggleGenre(genre)}>
+                    <Badge key={genre} variant={isSelected ? 'default' : 'outline'} className={cn('cursor-pointer', isSelected ? '' : 'border-white/20')} style={isSelected ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : {}} onClick={() => toggleGenre(genre)}>
                       {genre}
                     </Badge>
                   );
@@ -783,7 +782,7 @@ export default function MovieDetail({ movie, isAdmin }: MovieDetailProps) {
             </div>
             <div className="flex gap-2 pt-4 border-t border-white/10">
               <Button variant="outline" className="flex-1 h-10" onClick={() => setShowEditDialog(false)}><X className="w-4 h-4 mr-2" />Cancel</Button>
-              <Button className="flex-1 h-10" style={{ backgroundColor: primaryColor }} onClick={handleEditSave}><Save className="w-4 h-4 mr-2" />Save</Button>
+              <Button className="flex-1 h-10" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={handleEditSave}><Save className="w-4 h-4 mr-2" />Save</Button>
             </div>
           </div>
         </DialogContent>

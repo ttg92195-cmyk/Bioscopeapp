@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import MovieDetail from '../../components/movie/MovieDetail';
 import Sidebar from '../../components/layout/Sidebar';
 import MobileNav from '../../components/layout/MobileNav';
-import { useUserStore, useSettingsStore } from '@/lib/store';
+import { useUserStore } from '@/lib/store';
 
 interface DownloadLink {
   id: string;
@@ -58,7 +58,6 @@ interface Series {
 export default function SeriesDetailPage() {
   const params = useParams();
   const { isAdmin } = useUserStore();
-  const { primaryColor } = useSettingsStore();
   const [series, setSeries] = useState<Series | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -85,7 +84,7 @@ export default function SeriesDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-[#0d0d0d]">
         <div className="h-[40vh] shimmer" />
         <div className="px-4 -mt-20 relative z-10">
           <div className="shimmer rounded h-8 w-3/4 mb-4" />
@@ -112,7 +111,7 @@ export default function SeriesDetailPage() {
 
   if (error || !series) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-[#0d0d0d]">
         <Sidebar />
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
           <h1 className="text-2xl font-bold mb-2">Series Not Found</h1>
@@ -124,7 +123,7 @@ export default function SeriesDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <MovieDetail movie={series} isAdmin={isAdmin} />
       <MobileNav />

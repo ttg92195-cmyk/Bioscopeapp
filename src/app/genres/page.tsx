@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
-import { useSidebarStore, useSettingsStore } from '@/lib/store';
+import { useSidebarStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowLeft } from 'lucide-react';
@@ -46,7 +46,6 @@ const seriesCollections = [
 
 export default function GenresPage() {
   const { isOpen } = useSidebarStore();
-  const { primaryColor } = useSettingsStore();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('genres');
 
@@ -69,7 +68,7 @@ export default function GenresPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header showSearch={false} />
 
@@ -94,21 +93,21 @@ export default function GenresPage() {
               <TabsTrigger
                 value="genres"
                 className="data-[state=active]:bg-transparent"
-                style={activeTab === 'genres' ? { color: primaryColor } : {}}
+                style={activeTab === 'genres' ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
               >
                 Genres
               </TabsTrigger>
               <TabsTrigger
                 value="tags"
                 className="data-[state=active]:bg-transparent"
-                style={activeTab === 'tags' ? { color: primaryColor } : {}}
+                style={activeTab === 'tags' ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
               >
                 Tags
               </TabsTrigger>
               <TabsTrigger
                 value="collections"
                 className="data-[state=active]:bg-transparent"
-                style={activeTab === 'collections' ? { color: primaryColor } : {}}
+                style={activeTab === 'collections' ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
               >
                 Collections
               </TabsTrigger>

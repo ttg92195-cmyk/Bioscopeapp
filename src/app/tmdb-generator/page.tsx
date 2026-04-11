@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
-import { useSidebarStore, useUserStore, useSettingsStore } from '@/lib/store';
+import { useSidebarStore, useUserStore } from '@/lib/store';
 import { ArrowLeft, Sparkles, Plus, Check, Loader2, RefreshCw, Search, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -79,7 +79,6 @@ interface TMDBResult {
 export default function TMDBGeneratorPage() {
   const { isOpen } = useSidebarStore();
   const { isAdmin } = useUserStore();
-  const { primaryColor } = useSettingsStore();
   const router = useRouter();
 
   const [type, setType] = useState<string>('all');
@@ -368,17 +367,17 @@ export default function TMDBGeneratorPage() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin" style={{ color: primaryColor }} />
+      <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
       </div>
     );
   }
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" style={{ color: primaryColor }} />
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
           <p className="text-gray-400">Redirecting...</p>
         </div>
       </div>
@@ -386,18 +385,18 @@ export default function TMDBGeneratorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header showSearch={false} />
 
       <main className="pt-4 pb-20">
         {/* Header */}
         <div className="flex items-center gap-4 px-4 mb-4">
-          <Button variant="ghost" size="icon" onClick={() => router.back()} style={{ color: primaryColor }}>
+          <Button variant="ghost" size="icon" onClick={() => router.back()} style={{ color: 'var(--dynamic-primary, #E53935)' }}>
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5" style={{ color: primaryColor }} />
+            <Sparkles className="w-5 h-5" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
             <h1 className="text-xl font-bold">TMDB Generator</h1>
           </div>
         </div>
@@ -492,7 +491,7 @@ export default function TMDBGeneratorPage() {
                     size="sm"
                     variant={isSelected ? 'default' : 'outline'}
                     className="h-7 text-xs px-2"
-                    style={isSelected ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+                    style={isSelected ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
                     onClick={() => { setCount(c); setCustomCount(String(c)); }}
                   >
                     {c}
@@ -513,7 +512,7 @@ export default function TMDBGeneratorPage() {
               <Button onClick={handleSearch} disabled={loading} variant="outline" className="h-9 px-3 border-white/20">
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
               </Button>
-              <Button onClick={handleDiscover} disabled={loading} className="h-9 px-4" style={{ backgroundColor: primaryColor }}>
+              <Button onClick={handleDiscover} disabled={loading} className="h-9 px-4" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><RefreshCw className="w-4 h-4 mr-1" />Discover</>}
               </Button>
             </div>
@@ -534,7 +533,7 @@ export default function TMDBGeneratorPage() {
                   )}
                 </div>
                 
-                <Button size="sm" className="h-8" style={{ backgroundColor: primaryColor }} onClick={handleImport} disabled={importing || selectedIds.length === 0}>
+                <Button size="sm" className="h-8" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={handleImport} disabled={importing || selectedIds.length === 0}>
                   {importing ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin mr-1" />
@@ -574,7 +573,7 @@ export default function TMDBGeneratorPage() {
                         {!isImported && (
                           <div className={`absolute inset-0 flex items-center justify-center transition-colors ${isSelected ? 'bg-black/50' : 'bg-transparent'}`}>
                             {isSelected && (
-                              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+                              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}>
                                 <Check className="w-5 h-5 text-white" />
                               </div>
                             )}
@@ -607,7 +606,7 @@ export default function TMDBGeneratorPage() {
                       variant={page === currentPage ? 'default' : 'outline'}
                       size="sm"
                       className="h-8 w-8 p-0"
-                      style={page === currentPage ? { backgroundColor: primaryColor } : {}}
+                      style={page === currentPage ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : {}}
                       onClick={() => typeof page === 'number' && goToPage(page)}
                       disabled={typeof page === 'string'}
                     >
@@ -632,7 +631,7 @@ export default function TMDBGeneratorPage() {
           {/* Loading State */}
           {loading && results.length === 0 && (
             <div className="flex flex-col items-center justify-center py-16">
-              <Loader2 className="w-10 h-10 animate-spin mb-4" style={{ color: primaryColor }} />
+              <Loader2 className="w-10 h-10 animate-spin mb-4" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
               <p className="text-gray-400">Loading posts...</p>
             </div>
           )}

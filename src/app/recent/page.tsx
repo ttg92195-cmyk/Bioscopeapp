@@ -85,7 +85,7 @@ function RecentContent() {
 
 export default function RecentPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header showSearch={false} />
 

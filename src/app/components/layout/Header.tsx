@@ -1,7 +1,7 @@
 'use client';
 
 import { Search } from 'lucide-react';
-import { useSidebarStore, useSettingsStore } from '@/lib/store';
+import { useSidebarStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
@@ -19,7 +19,6 @@ export default function Header({
   searchPlaceholder = 'Search movies, series...'
 }: HeaderProps) {
   const { open } = useSidebarStore();
-  const { primaryColor } = useSettingsStore();
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 

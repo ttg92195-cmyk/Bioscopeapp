@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="my" className="dark" suppressHydrationWarning style={{ backgroundColor: '#0a0a0a' }}>
+    <html lang="my" className="dark" suppressHydrationWarning style={{ backgroundColor: '#0d0d0d' }}>
 
     <script
       dangerouslySetInnerHTML={{
@@ -45,7 +45,7 @@ export default function RootLayout({
     />
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen`}
-        style={{ backgroundColor: '#0a0a0a', color: '#ffffff' }}
+        style={{ backgroundColor: '#0d0d0d', color: '#ffffff' }}
       >
         <ThemeSync />
         {children}

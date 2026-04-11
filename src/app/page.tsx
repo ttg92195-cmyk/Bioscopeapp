@@ -207,7 +207,7 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header />
       <Suspense fallback={

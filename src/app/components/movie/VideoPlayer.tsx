@@ -66,7 +66,6 @@ export default function VideoPlayer({
   movieType = 'movie',
   movieVideoServers = [],
 }: VideoPlayerProps) {
-  const { primaryColor } = useSettingsStore();
   
   // Filter out Season 0 (Specials)
   const validSeasons = useMemo(() => 
@@ -303,7 +302,7 @@ export default function VideoPlayer({
                   variant={selectedSeason === season.seasonNumber ? 'default' : 'outline'}
                   size="sm"
                   className="h-8 text-xs whitespace-nowrap"
-                  style={selectedSeason === season.seasonNumber ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+                  style={selectedSeason === season.seasonNumber ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
                   onClick={() => handleSeasonChange(season.seasonNumber)}
                 >
                   {season.name || `Season ${season.seasonNumber}`}
@@ -323,7 +322,7 @@ export default function VideoPlayer({
                     variant={selectedEpisode === episode.id ? 'default' : 'outline'}
                     size="sm"
                     className="h-8 text-xs min-w-[40px]"
-                    style={selectedEpisode === episode.id ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+                    style={selectedEpisode === episode.id ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
                     onClick={() => setSelectedEpisode(episode.id)}
                   >
                     {episode.episodeNumber}
@@ -344,7 +343,7 @@ export default function VideoPlayer({
                     variant={activeServer === server.id ? 'default' : 'outline'}
                     size="sm"
                     className="h-8 text-xs whitespace-nowrap"
-                    style={activeServer === server.id ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+                    style={activeServer === server.id ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
                     onClick={() => setSelectedServer(server.id)}
                   >
                     {server.name}
@@ -432,7 +431,7 @@ export default function VideoPlayer({
         )}
         {loading && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-t-transparent rounded-full" style={{ borderColor: primaryColor, borderTopColor: 'transparent' }} />
+            <div className="w-8 h-8 border-2 border-t-transparent rounded-full" style={{ borderColor: 'var(--dynamic-primary, #E53935)', borderTopColor: 'transparent' }} />
           </div>
         )}
       </div>
@@ -485,7 +484,7 @@ export default function VideoPlayer({
             </div>
             <div className="flex gap-2 pt-2">
               <Button variant="outline" className="flex-1 h-9" onClick={() => { setShowAddServer(false); setNewServerName(''); setNewServerUrl(''); }}>Cancel</Button>
-              <Button className="flex-1 h-9" style={{ backgroundColor: primaryColor }} onClick={handleAddServer} disabled={loading}>
+              <Button className="flex-1 h-9" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={handleAddServer} disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Save'}
               </Button>
             </div>
@@ -504,7 +503,7 @@ export default function VideoPlayer({
             </div>
             <div className="flex gap-2 pt-2">
               <Button variant="outline" className="flex-1 h-9" onClick={() => setShowEditServer(null)}><X className="w-4 h-4 mr-1" />Cancel</Button>
-              <Button className="flex-1 h-9" style={{ backgroundColor: primaryColor }} onClick={handleEditServer} disabled={loading}>
+              <Button className="flex-1 h-9" style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }} onClick={handleEditServer} disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Save className="w-4 h-4 mr-1" />Save</>}
               </Button>
             </div>

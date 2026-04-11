@@ -3,7 +3,7 @@
 import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
-import { useUserStore, useSettingsStore } from '@/lib/store';
+import { useUserStore } from '@/lib/store';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -12,11 +12,10 @@ import { useRouter } from 'next/navigation';
 
 export default function DownloadPage() {
   const { downloadEnabled, toggleDownload } = useUserStore();
-  const { primaryColor } = useSettingsStore();
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header showSearch={false} />
 
@@ -27,7 +26,7 @@ export default function DownloadPage() {
             variant="ghost"
             size="icon"
             onClick={() => router.back()}
-            style={{ color: primaryColor }}
+            style={{ color: 'var(--dynamic-primary, #E53935)' }}
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
@@ -47,7 +46,7 @@ export default function DownloadPage() {
               <Switch
                 checked={downloadEnabled}
                 onCheckedChange={toggleDownload}
-                style={{ '--switch-bg': primaryColor } as React.CSSProperties}
+                style={{ '--switch-bg': 'var(--dynamic-primary, #E53935)' } as React.CSSProperties}
               />
             </div>
           </div>

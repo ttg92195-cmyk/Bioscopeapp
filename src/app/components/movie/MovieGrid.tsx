@@ -3,7 +3,6 @@
 import MovieCard from './MovieCard';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { useSettingsStore } from '@/lib/store';
 
 interface Movie {
   id: string;
@@ -30,7 +29,6 @@ export default function MovieGrid({
   moreHref,
   variant = 'compact',
 }: MovieGridProps) {
-  const { primaryColor } = useSettingsStore();
 
   return (
     <section className="mb-8">
@@ -43,7 +41,7 @@ export default function MovieGrid({
               className="flex items-center gap-0.5 text-xs font-medium text-white/40 hover:text-white"
             >
               <span>More</span>
-              <ChevronRight className="w-3.5 h-3.5" style={{ color: primaryColor }} />
+              <ChevronRight className="w-3.5 h-3.5" style={{ color: 'var(--dynamic-primary, #E53935)' }} />
             </Link>
           )}
         </div>

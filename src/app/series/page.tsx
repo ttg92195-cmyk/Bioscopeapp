@@ -6,7 +6,6 @@ import Sidebar from '../components/layout/Sidebar';
 import Header from '../components/layout/Header';
 import MobileNav from '../components/layout/MobileNav';
 import MovieGrid from '../components/movie/MovieGrid';
-import { useSettingsStore } from '@/lib/store';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -32,7 +31,6 @@ interface Series {
 }
 
 function SeriesContent() {
-  const { primaryColor } = useSettingsStore();
   const searchParams = useSearchParams();
   const genreFromUrl = searchParams.get('genre');
 
@@ -153,7 +151,7 @@ function SeriesContent() {
               key={genre}
               size="sm"
               variant={selectedGenre === genre ? 'default' : 'outline'}
-              style={selectedGenre === genre ? { backgroundColor: primaryColor } : { borderColor: '#2D2D2D' }}
+              style={selectedGenre === genre ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : { borderColor: '#2D2D2D' }}
               onClick={() => setSelectedGenre(genre)}
             >
               {genre}
@@ -172,7 +170,7 @@ function SeriesContent() {
 
           {getPageNumbers().map((page, i) => (
             <Button key={i} variant={page === currentPage ? 'default' : 'outline'} size="sm" className="h-8 w-8 p-0"
-              style={page === currentPage ? { backgroundColor: primaryColor } : {}}
+              style={page === currentPage ? { backgroundColor: 'var(--dynamic-primary, #E53935)' } : {}}
               onClick={() => typeof page === 'number' && goToPage(page)} disabled={typeof page === 'string'}>
               {page}
             </Button>
@@ -200,7 +198,7 @@ function SeriesContent() {
 
 export default function SeriesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header searchPlaceholder="Search Series..." />
 

@@ -17,7 +17,7 @@ import {
   Sparkles,
   User
 } from 'lucide-react';
-import { useSidebarStore, useUserStore, useSettingsStore } from '@/lib/store';
+import { useSidebarStore, useUserStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -36,7 +36,6 @@ export default function Sidebar() {
   const pathname = usePathname();
   const { isOpen, close } = useSidebarStore();
   const { isAdmin, logout } = useUserStore();
-  const { primaryColor } = useSettingsStore();
 
   useEffect(() => {
     close();
@@ -70,7 +69,7 @@ export default function Sidebar() {
           <div className="flex items-center gap-2">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: primaryColor }}
+              style={{ backgroundColor: 'var(--dynamic-primary, #E53935)' }}
             >
               <Film className="w-5 h-5 text-white" />
             </div>
@@ -96,7 +95,7 @@ export default function Sidebar() {
                         ? 'bg-white/10 text-white'
                         : 'text-gray-400 hover:bg-white/5 hover:text-white'
                     )}
-                    style={isActive ? { color: primaryColor } : {}}
+                    style={isActive ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
                   >
                     <item.icon className="w-5 h-5" />
                     <span>{item.label}</span>
@@ -115,7 +114,7 @@ export default function Sidebar() {
                       ? 'bg-white/10 text-white'
                       : 'text-gray-400 hover:bg-white/5 hover:text-white'
                   )}
-                  style={pathname === '/tmdb-generator' ? { color: primaryColor } : {}}
+                  style={pathname === '/tmdb-generator' ? { color: 'var(--dynamic-primary, #E53935)' } : {}}
                 >
                   <Sparkles className="w-5 h-5" />
                   <span>TMDB Generator</span>
