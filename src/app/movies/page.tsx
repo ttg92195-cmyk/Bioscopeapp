@@ -124,7 +124,11 @@ function MoviesContent() {
   };
 
   if (loading) {
-    return null;
+    return (
+      <main className="pt-4 pb-20">
+        <SkeletonGrid count={14} />
+      </main>
+    );
   }
 
   return (

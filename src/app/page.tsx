@@ -119,7 +119,12 @@ function HomeContent() {
   }, [router, searchParams]);
 
   if (loading) {
-    return null;
+    return (
+      <main className="pt-2 pb-20">
+        <SkeletonGrid count={10} title="Movies" />
+        <SkeletonGrid count={10} title="Series" />
+      </main>
+    );
   }
 
   return (
