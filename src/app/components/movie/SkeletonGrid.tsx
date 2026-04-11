@@ -2,29 +2,35 @@
 
 interface SkeletonGridProps {
   count?: number;
-  compact?: boolean;
+  title?: string;
 }
 
-function SkeletonCard({ compact = false }: { compact?: boolean }) {
+function SkeletonCard() {
   return (
-    <div className="rounded-md overflow-hidden bg-[#1a1a1a]">
+    <div className="rounded-xl overflow-hidden bg-[#1a1a1a] border border-white/5">
       {/* Poster skeleton */}
       <div className="aspect-[2/3] shimmer" />
-      {/* Title skeleton */}
-      <div className={compact ? 'p-1.5 space-y-1' : 'p-2 space-y-1.5'}>
-        <div className={`shimmer rounded ${compact ? 'h-2.5 w-4/5' : 'h-3 w-4/5'}`} />
-        <div className={`shimmer rounded ${compact ? 'h-2 w-1/2' : 'h-2 w-1/2'}`} />
+      {/* Title skeleton only */}
+      <div className="p-2.5">
+        <div className="shimmer rounded h-2.5 w-4/5" />
       </div>
     </div>
   );
 }
 
-export default function SkeletonGrid({ count = 12, compact = true }: SkeletonGridProps) {
+export default function SkeletonGrid({ count = 10, title }: SkeletonGridProps) {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 px-4">
-      {Array.from({ length: count }).map((_, i) => (
-        <SkeletonCard key={i} compact={compact} />
-      ))}
-    </div>
+    <section className="mb-8">
+      {title && (
+        <div className="mb-4 px-4">
+          <div className="shimmer rounded h-5 w-24" />
+        </div>
+      )}
+      <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 px-4">
+        {Array.from({ length: count }).map((_, i) => (
+          <SkeletonCard key={i} />
+        ))}
+      </div>
+    </section>
   );
 }
