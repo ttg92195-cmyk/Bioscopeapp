@@ -9,6 +9,8 @@ import MovieGrid from '../components/movie/MovieGrid';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import SkeletonGrid from '../components/movie/SkeletonGrid';
+
 const genres = [
   'All', 'Action & Adventure', 'Animation', 'Comedy', 'Crime',
   'Documentary', 'Drama', 'Family', 'Kids', 'Mystery',
@@ -201,7 +203,9 @@ export default function SeriesPage() {
       <Header searchPlaceholder="Search Series..." />
 
       <main className="pt-4 pb-20">
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          <SkeletonGrid count={14} />
+        }>
           <SeriesContent />
         </Suspense>
       </main>

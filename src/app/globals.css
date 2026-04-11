@@ -56,14 +56,14 @@
   --secondary-foreground: #ffffff;
   --muted: #1a1a1a;
   --muted-foreground: #9CA3AF;
-  --accent: #008B8B;
+  --accent: #2D2D2D;
   --accent-foreground: #ffffff;
   --destructive: var(--dynamic-primary, #E53935);
   --border: rgba(255, 255, 255, 0.06);
   --input: rgba(255, 255, 255, 0.08);
   --ring: var(--dynamic-primary, #E53935);
   --chart-1: var(--dynamic-primary, #E53935);
-  --chart-2: #008B8B;
+  --chart-2: #F59E0B;
   --chart-3: #8B5CF6;
   --chart-4: #F59E0B;
   --chart-5: #10B981;
@@ -90,7 +90,7 @@
   --secondary-foreground: #ffffff;
   --muted: #1a1a1a;
   --muted-foreground: #9CA3AF;
-  --accent: #008B8B;
+  --accent: #2D2D2D;
   --accent-foreground: #ffffff;
   --destructive: var(--dynamic-primary, #E53935);
   --border: rgba(255, 255, 255, 0.06);

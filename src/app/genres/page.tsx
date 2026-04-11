@@ -126,7 +126,7 @@ export default function GenresPage() {
                   key={genre}
                   variant="outline"
                   className="genre-button h-auto py-3 text-sm"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleGenreClick(genre, 'movie')}
                 >
                   {genre}
@@ -142,7 +142,7 @@ export default function GenresPage() {
                   key={genre}
                   variant="outline"
                   className="genre-button h-auto py-3 text-sm"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleGenreClick(genre, 'series')}
                 >
                   {genre}
@@ -163,7 +163,7 @@ export default function GenresPage() {
                   key={tag}
                   variant="outline"
                   className="genre-button h-auto py-3 text-sm"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleTagClick(tag, 'movie')}
                 >
                   {tag}
@@ -179,7 +179,7 @@ export default function GenresPage() {
                   key={tag}
                   variant="outline"
                   className="genre-button h-auto py-3 text-sm"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleTagClick(tag, 'series')}
                 >
                   {tag}
@@ -200,7 +200,7 @@ export default function GenresPage() {
                   key={collection}
                   variant="outline"
                   className="genre-button h-auto py-3 text-xs"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleCollectionClick(collection, 'movie')}
                 >
                   {collection}
@@ -216,7 +216,7 @@ export default function GenresPage() {
                   key={collection}
                   variant="outline"
                   className="genre-button h-auto py-3 text-sm"
-                  style={{ borderColor: '#008B8B' }}
+                  style={{ borderColor: 'var(--dynamic-primary, #E53935)' }}
                   onClick={() => handleCollectionClick(collection, 'series')}
                 >
                   {collection}
