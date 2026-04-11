@@ -9,8 +9,6 @@ import MovieGrid from '../components/movie/MovieGrid';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import SkeletonGrid from '../components/movie/SkeletonGrid';
-
 const genres = [
   'All', 'Action', 'Adventure', 'Animation', 'Comedy', 'Crime',
   'Documentary', 'Drama', 'Family', 'Fantasy', 'History', 'Horror',
@@ -203,19 +201,7 @@ export default function MoviesPage() {
       <Header searchPlaceholder="Search Movies..." />
 
       <main className="pt-4 pb-20">
-        <Suspense fallback={
-          <div className="px-4 mb-4">
-            <div className="shimmer rounded h-8 w-40 mb-4" />
-            <div className="shimmer rounded h-10 w-full mb-4" />
-            <div className="flex gap-2 mb-4">
-              <div className="shimmer rounded h-8 w-16" />
-              <div className="shimmer rounded h-8 w-20" />
-              <div className="shimmer rounded h-8 w-16" />
-              <div className="shimmer rounded h-8 w-20" />
-              <div className="shimmer rounded h-8 w-24" />
-            </div>
-          </div>
-        }>
+        <Suspense fallback={null}>
           <MoviesContent />
         </Suspense>
       </main>

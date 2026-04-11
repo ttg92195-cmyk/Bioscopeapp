@@ -7,7 +7,6 @@ import Header from './components/layout/Header';
 import MobileNav from './components/layout/MobileNav';
 import MovieGrid from './components/movie/MovieGrid';
 import Pagination from './components/movie/Pagination';
-import SkeletonGrid from './components/movie/SkeletonGrid';
 import { Film, Search } from 'lucide-react';
 
 const SEARCH_ITEMS_PER_PAGE = 30;
@@ -210,12 +209,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#0d0d0d]">
       <Sidebar />
       <Header />
-      <Suspense fallback={
-        <main className="pt-2 pb-20">
-          <SkeletonGrid count={10} title="Movies" />
-          <SkeletonGrid count={10} title="Series" />
-        </main>
-      }>
+      <Suspense fallback={null}>
         <HomeContent />
       </Suspense>
       <MobileNav />
